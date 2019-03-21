@@ -1,22 +1,21 @@
-'use strict';
-const mongoose = require('mongoose'),
-      uniqueValidator = require('mongoose-unique-validator');
+var mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-const NoteSchema = new Schema({
-  text: {
-    type: String,
-    required: true
+var noteSchema = new Schema({
+
+  _headlineId: {
+    type: Schema.Types.ObjectId,
+    ref: "Headline"
   },
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+
+  noteText: String
 });
 
-NoteSchema.plugin(uniqueValidator);
-
-const Note = mongoose.model("Note", NoteSchema);
+var Note = mongoose.model("Note", noteSchema);
 
 module.exports = Note;
